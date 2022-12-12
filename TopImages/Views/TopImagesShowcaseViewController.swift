@@ -9,6 +9,14 @@ import UIKit
 import Combine
 
 class TopImagesShowcaseViewController: UIViewController {
+  private lazy var activityIndicatorView: UIActivityIndicatorView = {
+    let activityIndicatorView = UIActivityIndicatorView()
+    activityIndicatorView.style = .large
+    activityIndicatorView.color = .black
+    activityIndicatorView.hidesWhenStopped = true
+    return activityIndicatorView
+  }()
+  
   private lazy var collctionView: UICollectionView = {
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                           heightDimension: .fractionalHeight(1))
@@ -28,7 +36,11 @@ class TopImagesShowcaseViewController: UIViewController {
   
   private var shouldReload = false
   private var cancellable: AnyCancellable?
-  private var images = [Image]()
+  private var images = [Image]() {
+    didSet {
+      images.isEmpty ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
+    }
+  }
   
   let viewModel: TopImagesViewModel
   
@@ -45,11 +57,13 @@ class TopImagesShowcaseViewController: UIViewController {
     super.viewDidLoad()
     setupView()
     setupCollectionView()
+    setupActivityIndicator()
     setupViewModel()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    activityIndicatorView.startAnimating()
     try? viewModel.fetchMore()
   }
 }
@@ -71,6 +85,13 @@ private extension TopImagesShowcaseViewController {
     collctionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
     collctionView.delegate = self
     collctionView.dataSource = self
+  }
+  
+  func setupActivityIndicator() {
+    view.addSubview(activityIndicatorView)
+    activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+    activityIndicatorView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    activityIndicatorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
   }
   
   func setupViewModel() {
