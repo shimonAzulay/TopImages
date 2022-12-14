@@ -492,6 +492,7 @@
 				DEVELOPMENT_TEAM = E6KB8WYCTF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TopImages/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cats;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -519,6 +520,7 @@
 				DEVELOPMENT_TEAM = E6KB8WYCTF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TopImages/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cats;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
